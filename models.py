@@ -22,18 +22,30 @@ class StudyResult:
     study_conditions: List
     keywords: List
     study_keywords: List
-    # arm_group_interventions: List
-    # interventions: List
-    # study_interventions: List
-    # central_contacts: List
-    # study_central_contacts: List
-    # locations: List
-    # study_locations: List
-    # references: List
-    # links: List
-    # ipds: List
-    # flow_groups: List
-    # flow_period_events: List
+    arm_groups: List
+    arm_interventions: List
+    intervention_names: List
+    study_intervention_names: List
+    other_interventions_names: List
+    study_other_interventions_names: List
+    primary_outcomes: List
+    secondary_outcomes: List
+    other_outcomes: List
+    central_contacts: List
+    study_central_contacts: List
+    locations: List
+    study_locations: List
+    references: List
+    link_references: List
+    ipd_references: List
+    outcome_measures: List
+    outcome_measure_groups: List
+    outcome_measure_denom_units: List
+    outcome_measure_denom_counts: List
+    outcome_measure_measurements: List
+    outcome_measure_analyses: List
+    outcome_measure_comparison_groups: List
+
 
     def tables(self) -> Dict[str, List[Dict]]:
         return asdict(self)

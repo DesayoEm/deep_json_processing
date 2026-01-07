@@ -117,7 +117,7 @@ NON_SCALAR_FIELDS = {
         },
     },
     # outcomesModule
-    "study_outcomes": {
+    "outcomes": {
         "index_field": "protocolSection.outcomesModule",
         "non-scalar_fields": {
             "primaryOutcomes": ["measure", "description", "timeFrame"],
@@ -125,88 +125,70 @@ NON_SCALAR_FIELDS = {
             "otherOutcomes": ["measure", "description", "timeFrame"],
         },
     },
-    # designModule
-    "design": {
-        "index_field": "protocolSection.designModule.phases",
-        "non-scalar_fields": {
-            "phases": [],
-            "secondaryOutcomes": ["measure", "description", "timeFrame"],
-            "otherOutcomes": ["measure", "description", "timeFrame"],
-        },
-    },
+
     # contactsLocationsModule
-    "central_contacts": {
-        "index_field": "protocolSection.contactsLocationsModule.centralContacts",
-        "fields": ["name", "role", "email", "phone", "phoneExt"],
-    },
-    "locations": {
-        "index_field": "protocolSection.contactsLocationsModule.locations",
-        "fields": ["facility", "city", "state", "zip", "country", "status"],
+    "contacts_location": {
+        "index_field": "protocolSection.contactsLocationsModule",
         "non-scalar_fields": {
-            "geoPoint": {
-                "object_type": "simple_dict",
-                "fields": ["lat", "lon"],
-            },
-            # contacts are saved as a JSON blob
-            "contacts": {
-                "object_type": "non-scalar_fields_array_of_dicts",
-                "fields": ["name", "role", "email", "phone", "phoneExt"],
-            },
-        },
+            "central_contacts": ["name", "role", "email", "phone", "phoneExt"],
+            "locations": [
+                ["facility", "city", "state", "zip", "country", "status"],
+                {"geoPoint": ["lat", "lon"]},
+                {"contacts": ["name", "role", "email", "phone", "phoneExt"]}
+            ]
+        }
     },
+
     # referencesModule
     "references": {
-        "index_field": "protocolSection.referencesModule.references",
-        "fields": ["pmid", "type"],
-    },
-    "see_also": {
-        "index_field": "protocolSection.referencesModule.seeAlsoLinks",
-        "fields": ["label", "url"],
-    },
-    "avail_ipds": {
-        "index_field": "protocolSection.referencesModule.availIpds",
-        "fields": ["id", "type", "url", "comment"],
-    },
-    # participantFlowModule
-    "flow_groups": {
-        "index_field": "resultsSection.participantFlowModule.groups",
-
-        "fields": ["id", "title", "description"],
-    },
-    "flow_periods": {
-        "index_field": "resultsSection.participantFlowModule.periods",
-
-        "fields": ["title"],
+        "index_field": "protocolSection.referencesModule",
         "non-scalar_fields": {
-            "milestones": ["type", "comment", "achievements"],
-            "dropWithdraws": ["type", "comment", "reasons"],
+            "references": ["pmid", "type"],
+            "see_also": ["label", "url"],
+            "avail_ipds": ["id", "type", "url", "comment"],
         },
+
     },
+
     # outcomeMeasuresModule
     "outcome_measures": {
-        "index_field": "resultsSection.outcomeMeasuresModule.outcomeMeasures",
-
-        "fields": [
-            "type",
-            "title",
-            "description",
-            "populationDescription",
-            "reportingStatus",
-            "anticipatedPostingDate",
-            "paramType",
-            "dispersionType",
-            "unitOfMeasure",
-            "calculatePct",
-            "timeFrame",
-            "denomUnitsSelected" "typeUnitsAnalyzed",
-        ],
+        "index_field": "resultsSection.outcomeMeasuresModule",
         "non-scalar_fields": {
+            "outcomeMeasures": [
+                "type",
+                "title",
+                "description",
+                "populationDescription",
+                "reportingStatus",
+                "anticipatedPostingDate",
+                "paramType",
+                "dispersionType",
+                "unitOfMeasure",
+                "calculatePct",
+                "timeFrame",
+                "denomUnitsSelected" "typeUnitsAnalyzed",
+            ],
             "OutcomeGroup": ["id", "title", "description"],
             "OutcomeDenom": ["units", "counts", ["groupId", "value"]],
             "OutcomeClass": ["categories", "comment", "achievements"],
             "OutcomeAnalysis ": ["type", "comment", "reasons"],
         },
     },
+
+    # participantFlowModule
+    "flow_groups": {
+        "index_field": "resultsSection.participantFlowModule.groups",
+        "fields": ["id", "title", "description"],
+    },
+    "flow_periods": {
+        "index_field": "resultsSection.participantFlowModule.periods",
+        "fields": ["title"],
+        "non-scalar_fields": {
+            "milestones": ["type", "comment", "achievements"],
+            "dropWithdraws": ["type", "comment", "reasons"],
+        },
+    },
+
     # adverseEventsModule
     "adverse_events": {
         "index_field": "resultsSection.adverseEventsModule",
@@ -251,7 +233,7 @@ NON_SCALAR_FIELDS = {
                 "releaseDate",
                 "postedDate",
             ],
-        }
+        },
     },
     # conditionBrowseModule
     "conditions_browse": {
