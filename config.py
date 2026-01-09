@@ -125,7 +125,6 @@ NON_SCALAR_FIELDS = {
             "otherOutcomes": ["measure", "description", "timeFrame"],
         },
     },
-
     # contactsLocationsModule
     "contacts_location": {
         "index_field": "protocolSection.contactsLocationsModule",
@@ -134,11 +133,10 @@ NON_SCALAR_FIELDS = {
             "locations": [
                 ["facility", "city", "state", "zip", "country", "status"],
                 {"geoPoint": ["lat", "lon"]},
-                {"contacts": ["name", "role", "email", "phone", "phoneExt"]}
-            ]
-        }
+                {"contacts": ["name", "role", "email", "phone", "phoneExt"]},
+            ],
+        },
     },
-
     # referencesModule
     "references": {
         "index_field": "protocolSection.referencesModule",
@@ -147,9 +145,7 @@ NON_SCALAR_FIELDS = {
             "see_also": ["label", "url"],
             "avail_ipds": ["id", "type", "url", "comment"],
         },
-
     },
-
     # outcomeMeasuresModule
     "outcome_measures": {
         "index_field": "resultsSection.outcomeMeasuresModule",
@@ -174,21 +170,17 @@ NON_SCALAR_FIELDS = {
             "OutcomeAnalysis ": ["type", "comment", "reasons"],
         },
     },
-
     # participantFlowModule
-    "flow_groups": {
-        "index_field": "resultsSection.participantFlowModule.groups",
-        "fields": ["id", "title", "description"],
-    },
-    "flow_periods": {
-        "index_field": "resultsSection.participantFlowModule.periods",
-        "fields": ["title"],
+    "participant_flow": {
+        "index_field": "resultsSection.participantFlowModule",
         "non-scalar_fields": {
-            "milestones": ["type", "comment", "achievements"],
-            "dropWithdraws": ["type", "comment", "reasons"],
+            "groups": ["id", "title", "description"],
+            "periods": [
+                {"milestones": ["type", "comment", "achievements"]},
+                {"dropWithdraws": ["type", "comment", "reasons"]},
+            ],
         },
     },
-
     # adverseEventsModule
     "adverse_events": {
         "index_field": "resultsSection.adverseEventsModule",
@@ -219,8 +211,9 @@ NON_SCALAR_FIELDS = {
                 "notes",
                 ["groupId", "numEvents", "numAffected", "numAtRisk"],
             ],
-        },
+        }
     },
+
     # annotationModule
     "annotations": {
         "index_field": "annotationSection.annotationModule.violationAnnotation.violationEvents",
@@ -235,6 +228,7 @@ NON_SCALAR_FIELDS = {
             ],
         },
     },
+
     # conditionBrowseModule
     "conditions_browse": {
         "index_field": "derivedSection.conditionBrowseModule",
@@ -245,6 +239,8 @@ NON_SCALAR_FIELDS = {
             "browseBranches": ["abbrev", "name"],
         },
     },
+
+    # interventionBrowseModule
     "interventions_browse": {
         "index_field": "derivedSection.interventionBrowseModule",
         "non-scalar_fields": {
