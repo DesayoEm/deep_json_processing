@@ -25,10 +25,10 @@ class StudyResult:
     study_keywords: List
     arm_groups: List
     arm_interventions: List
-    intervention_names: List
-    study_intervention_names: List
-    other_interventions_names: List
-    study_other_interventions_names: List
+    interventions: List
+    study_interventions: List
+    other_intervention_names: List
+    study_intervention_aliases: List
     primary_outcomes: List
     secondary_outcomes: List
     other_outcomes: List
@@ -43,7 +43,7 @@ class StudyResult:
     outcome_measure_groups: List
     outcome_measure_denom_units: List
     outcome_measure_denom_counts: List
-    outcome_measure_measurements: List
+    outcome_measure_groups_result: List
     outcome_measure_analyses: List
     outcome_measure_comparison_groups: List
     flow_groups: List
@@ -58,7 +58,7 @@ class StudyResult:
     serious_event_stats: List
     other_events: List
     other_event_stats: List
-    violations:List
+    violations: List
     conditions_mesh: List
     study_conditions_mesh: List
     conditions_mesh_ancestors: List
